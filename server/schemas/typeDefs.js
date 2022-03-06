@@ -38,8 +38,6 @@ const typeDefs = gql`
 
 //   based on queries in user-controllers
   type Query {
-    users: [User]
-    user(username: String!): User
 // query to always find and return user logged in data by JWT
     me: User
   }
