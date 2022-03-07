@@ -1,7 +1,7 @@
 const express = require('express'); 
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
-// require Auth middleware for JWT
+// JWT Auth middleware
 const { authMiddleware } = require('./utils/auth');
 
 const { typeDefs, resolvers } = require('./schemas');
@@ -18,7 +18,7 @@ const server = new ApolloServer({
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// serve the built React front-end app
+// front end build
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
