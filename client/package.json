@@ -4,19 +4,19 @@
   "private": true,
   "proxy": "http://localhost:3001",
   "dependencies": {
-    "@apollo/client": "^3.5.10",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
+    "@apollo/client": "^3.5.8",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
     "bootstrap": "^4.4.1",
-    "graphql": "^16.3.0",
+    "graphql": "^15.4.0",
     "jwt-decode": "^3.1.2",
-    "react": "^16.13.1",
+    "react": "^17.0.1",
     "react-bootstrap": "^1.0.1",
-    "react-dom": "^16.13.1",
+    "react-dom": "^17.0.1",
     "react-router-dom": "^6.2.1",
-    "react-scripts": "^4.0.2",
-    "web-vitals": "^2.1.4"
+    "react-scripts": "4.0.1",
+    "web-vitals": "^0.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -25,7 +25,10 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "browserslist": {
     "production": [
@@ -38,8 +41,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@types/jwt-decode": "^3.1.0"
   }
 }
