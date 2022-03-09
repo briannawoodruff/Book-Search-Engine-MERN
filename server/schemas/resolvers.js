@@ -44,13 +44,14 @@ const resolvers = {
     saveBook: async (parent, { input }, context) => {
       // context for user logged in
       if (context.user) {
-          return User.findOneAndUpdate(
+          const findUser = await User.findOneAndUpdate(
               { _id: context.user._id },
               {
                 $addToSet: { savedBooks: input }
               },
               { new: true, runValidators: true }
           ); 
+          return { findUser };
       }
       // If user is not logged in, throw error
       throw new AuthenticationError('You need to be logged in!!!');
@@ -58,13 +59,14 @@ const resolvers = {
     // A logged in user can remove a book from their `savedBooks`
     deleteBook: async (parent, { bookId }, context) => {
       if (context.user) {
-        return User.findOneAndUpdate(
+        const findUser = await User.findOneAndUpdate(
           { _id: context.user._id },
           { 
             $pull: { savedBooks: { bookId: bookId } } 
           },
           { new: true }
         );
+        return { findUser };
       }
       // If user is not logged in, throw error
       throw new AuthenticationError('You need to be logged in!');
