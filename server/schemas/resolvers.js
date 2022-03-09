@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { Book, User } = require('../models');
+const { User } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -7,9 +7,9 @@ const resolvers = {
     // context query: retrieve logged in user
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id })
-          .select("-__v -password")
-          .populate("books");
+        const userData = await User.findOne({ _id: context.user._id })
+        
+        return userData;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -26,7 +26,7 @@ const resolvers = {
     // login a user, sign a token, and send it back (to client/src/components/LoginForm.js)
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
-
+debugger;
       if (!user) {
         throw new AuthenticationError("Incorrect credentials");
       }
@@ -43,11 +43,12 @@ const resolvers = {
     // save a book to a user's `savedBooks` field by adding it to the set (to prevent duplicates)
     saveBook: async (parent, { input }, context) => {
       // context for user logged in
+      console.log("context", context)
       if (context.user) {
           const findUser = await User.findOneAndUpdate(
               { _id: context.user._id },
               {
-                $addToSet: { savedBooks: input }
+                $push: { savedBooks: input }
               },
               { new: true, runValidators: true }
           ); 
