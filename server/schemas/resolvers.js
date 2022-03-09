@@ -41,15 +41,16 @@ const resolvers = {
       return { token, user };
     },
     // save a book to a user's `savedBooks` field by adding it to the set (to prevent duplicates)
-    saveBook: async (parent, { input }, context)=>{
+    saveBook: async (parent, { input }, context) => {
       // context for user logged in
-      if(context.user){
-          const user = await User.findOneAndUpdate(
-              {_id:context.user._id},
-              {$push: { savedBooks: input }},
-              {new: true}
-          );
-          return { user };
+      if (context.user) {
+          return User.findOneAndUpdate(
+              { _id: context.user._id },
+              {
+                $addToSet: { savedBooks: input }
+              },
+              { new: true, runValidators: true }
+          ); 
       }
       // If user is not logged in, throw error
       throw new AuthenticationError('You need to be logged in!!!');
