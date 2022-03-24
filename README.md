@@ -2,15 +2,8 @@
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
   ## Description:
-  ### Deployed:  TBA <br /><br /> 
-  This project has been fully refactored according to the requirements but contains a server error that has yet to be solved at the time of turning in. See error below: 
-  <br />
-  ![Server Error](assets/servererror.png) 
-  <br /><br /> 
-  To reproduce the error, clone this repository and `npm i` to install dependencies. Once installed, you can run `npm run develop` to start both the backend server and frontend. A user can signup or login but cannot save books due to the above error.
-  
-  <br /><br /> 
-  This project is a refactor of a Google Books API search engine app with a RESTful API converted to a GraphQL API with Apollo Server. It is built using a MERN stack: React front end, MongoDB database, and a Node.js/Express.js server/API.
+  ### Deployed: https://book-searched-mern.herokuapp.com <br /><br /> 
+  This project is a refactor of a Google Books API search engine app with a RESTful API converted to a GraphQL API with Apollo Server. It is built using a MERN stack: React front end, MongoDB database, and a Node.js/Express.js server/API. It also uses JWT and local storage.
 
   The motivation behind this project was to update an application with modern technologies to create a better performing application.
   <br />
